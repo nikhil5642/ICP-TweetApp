@@ -1,0 +1,32 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".HomeFragment">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.tweetandroidapp.views.home.HomeViewModel" />
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!-- RecyclerView to display tweets -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/tweet_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="80dp" />
+
+        <!-- Floating action button to compose a new tweet -->
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/write_tweet_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="16dp"
+            app:srcCompat="@drawable/ic_launcher_background" />
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

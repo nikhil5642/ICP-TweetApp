@@ -1,0 +1,25 @@
+# Various IDEs and Editors
+tweet-canister/.vscode/
+tweet-canister/.idea/
+tweet-canister/**/*~
+
+# Mac OSX temporary files
+tweet-canister/.DS_Store
+tweet-canister/**/.DS_Store
+
+# dfx temporary files
+tweet-canister/.dfx/
+
+# generated files
+tweet-canister/**/declarations/
+
+# rust
+tweet-canister/target/
+
+# frontend code
+tweet-canister/node_modules/
+tweet-canister/dist/
+tweet-canister/.svelte-kit/
+
+# environment variables
+tweet-canister/.env

@@ -1,0 +1,33 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable
+            name="tweetModel"
+            type="com.example.tweetandroidapp.models.TweetModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/tweet_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{tweetModel.content}" />
+
+        <TextView
+            android:id="@+id/tweet_creator"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text='@{String.format(@string/by_creator, tweetModel.creatorId)}' />
+
+        <TextView
+            android:id="@+id/tweet_timestamp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text='@{String.format(@string/at_timestamp, tweetModel.createdAt)}' />
+    </LinearLayout>
+</layout>

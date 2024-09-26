@@ -13,11 +13,10 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.tweetandroidapp.R
 import com.example.tweetandroidapp.databinding.FragmentHomeBinding
-import com.example.tweetandroidapp.icp.ICClient
-import com.example.tweetandroidapp.repositories.TweetsRepository
 import com.example.tweetandroidapp.views.login.UserViewModel
 
 class HomeFragment : Fragment() {
@@ -43,17 +42,20 @@ class HomeFragment : Fragment() {
 
         // Set up RecyclerView
         tweetAdapter = TweetAdapter()
+
         binding.tweetRecyclerView.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = tweetAdapter
         }
-
-        // Observe LiveData from ViewModel and update the RecyclerView when data changes
+        val dividerItemDecoration = DividerItemDecoration(
+            binding.tweetRecyclerView.context,
+            (binding.tweetRecyclerView.layoutManager as LinearLayoutManager).orientation
+        )
+        binding.tweetRecyclerView.addItemDecoration(dividerItemDecoration)
         homeViewModel.tweets.observe(viewLifecycleOwner, Observer { tweets ->
             tweetAdapter.submitList(tweets)
         })
 
-        // Handle the floating action button click to navigate to the write tweet screen
         binding.writeTweetButton.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_writeTweetFragment)
         }
@@ -61,13 +63,11 @@ class HomeFragment : Fragment() {
         return binding.root
     }
 
-    // Inflate the menu
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.menu_home, menu)
         super.onCreateOptionsMenu(menu, inflater)
     }
 
-    // Handle menu item selection
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.action_logout -> {

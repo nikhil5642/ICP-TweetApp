@@ -1,0 +1,4 @@
+<resources>
+    <color name="editTextColor">#000000</color> <!-- White text for dark background -->
+    <color name="editTextHintColor">#B0B0B0</color> <!-- Light gray hint for dark background -->
+</resources>

@@ -12,34 +12,83 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="16dp"
-        >
+        android:padding="16dp">
 
-        <EditText
-            android:id="@+id/username_input"
+        <ImageView
+            android:id="@+id/app_logo"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            app:srcCompat="@drawable/ic_launcher_background"
+            android:layout_marginBottom="32dp"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/continue_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            android:hint="Enter Username"
-            android:text="@={viewModel.userId}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/welcome_message"
             app:layout_constraintVertical_chainStyle="packed"
             />
 
-        <Button
-            android:id="@+id/continue_button"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/username_input"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            android:layout_marginTop="16dp"
+        <TextView
+            android:id="@+id/welcome_message"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Continue"
-            android:onClick="@{() -> viewModel.login()}"
-
+            android:text="Welcome to TweetApp!"
+            android:textStyle="bold"
+            android:textSize="24sp"
+            android:layout_marginBottom="24dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@id/app_logo"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/username_input"
             />
+
+        <EditText
+            android:id="@+id/username_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/enter_username"
+            android:background="@drawable/input_background"
+            android:padding="16dp"
+            android:layout_marginTop="32dp"
+            android:text="@={viewModel.userId}"
+            android:textColor="@color/editTextColor"
+            android:textColorHint="@color/editTextHintColor"
+            app:layout_constraintTop_toBottomOf="@id/welcome_message"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/continue_button"
+            />
+
+
+        <Button
+            android:id="@+id/continue_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/continue_text"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:background="@drawable/button_background"
+            android:padding="16dp"
+            android:layout_marginTop="20dp"
+            android:onClick="@{() -> viewModel.login()}"
+            app:layout_constraintTop_toBottomOf="@id/username_input"
+            app:layout_constraintBottom_toTopOf="@id/signup_link"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+
+        <TextView
+            android:id="@+id/signup_link"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/don_t_have_an_account_sign_up_here"
+            android:textColor="?attr/colorPrimary"
+            android:layout_marginTop="16dp"
+            android:textSize="14sp"
+            app:layout_constraintTop_toBottomOf="@id/continue_button"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

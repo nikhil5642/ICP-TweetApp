@@ -1,5 +1,6 @@
 package com.example.tweetandroidapp.views.writeTweet
 
+import DummyTweetsRepository
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -27,7 +28,7 @@ class WriteTweetFragment : Fragment(), WriteTweetListener {
     ): View? {
         // Set up DataBinding
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_write_tweet, container, false)
-        tweetsRepository= TweetsRepository(ICClient.getInstance(requireContext()))
+        tweetsRepository= DummyTweetsRepository(requireContext())
         userRepository=UserRepository(requireContext())
         viewModel = ViewModelProvider(this,WriteViewModelFactory(userRepository,tweetsRepository,
             this))[WriteTweetViewModel::class.java]

@@ -1,5 +1,6 @@
 package com.example.tweetandroidapp.views.home
 
+import DummyTweetsRepository
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.Menu
@@ -15,6 +16,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.tweetandroidapp.R
 import com.example.tweetandroidapp.databinding.FragmentHomeBinding
+import com.example.tweetandroidapp.icp.ICClient
+import com.example.tweetandroidapp.repositories.TweetsRepository
 import com.example.tweetandroidapp.views.login.UserViewModel
 
 class HomeFragment : Fragment() {
@@ -32,7 +35,8 @@ class HomeFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
         setHasOptionsMenu(true)
         // Initialize ViewModel
-        homeViewModel = ViewModelProvider(this)[HomeViewModel::class.java]
+        val tweetsRepository= DummyTweetsRepository(requireContext())
+        homeViewModel = ViewModelProvider(this,HomeViewModelFactory(tweetsRepository))[HomeViewModel::class.java]
         userViewModel = ViewModelProvider(requireActivity())[UserViewModel::class.java]
         binding.viewModel = homeViewModel
         binding.lifecycleOwner = viewLifecycleOwner
@@ -72,5 +76,10 @@ class HomeFragment : Fragment() {
             }
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        homeViewModel.loadTweets()
     }
 }

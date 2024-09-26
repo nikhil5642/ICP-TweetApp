@@ -16,7 +16,7 @@ class HomeViewModel(private val tweetsRepository: TweetsRepository,) : ViewModel
         loadTweets()
     }
 
-    private fun loadTweets() {
+    fun loadTweets() {
         _tweets.value = tweetsRepository.getTweets().toList();
     }
 

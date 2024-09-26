@@ -38,7 +38,6 @@ https://github.com/user-attachments/assets/0b1cf6e6-a2ad-4f46-8f34-7b99611079cd
    ```
 2. Set up the canister:
    ```bash
-   Copy code
    cd tweet-canister
    dfx start --background
    dfx deploy

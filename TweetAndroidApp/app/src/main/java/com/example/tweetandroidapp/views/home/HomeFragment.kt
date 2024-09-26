@@ -17,9 +17,10 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.tweetandroidapp.R
 import com.example.tweetandroidapp.databinding.FragmentHomeBinding
+import com.example.tweetandroidapp.repositories.TweetsRepository
 import com.example.tweetandroidapp.views.login.UserViewModel
 
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(){
 
     private lateinit var binding: FragmentHomeBinding
     private lateinit var homeViewModel: HomeViewModel
@@ -34,7 +35,7 @@ class HomeFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
         setHasOptionsMenu(true)
         // Initialize ViewModel
-        val tweetsRepository= DummyTweetsRepository(requireContext())
+        val tweetsRepository= TweetsRepository(requireContext())
         homeViewModel = ViewModelProvider(this,HomeViewModelFactory(tweetsRepository))[HomeViewModel::class.java]
         userViewModel = ViewModelProvider(requireActivity())[UserViewModel::class.java]
         binding.viewModel = homeViewModel
@@ -53,7 +54,9 @@ class HomeFragment : Fragment() {
         )
         binding.tweetRecyclerView.addItemDecoration(dividerItemDecoration)
         homeViewModel.tweets.observe(viewLifecycleOwner, Observer { tweets ->
-            tweetAdapter.submitList(tweets)
+            tweetAdapter.submitList(tweets) {
+                binding.tweetRecyclerView.layoutManager?.scrollToPosition(0)
+            }
         })
 
         binding.writeTweetButton.setOnClickListener {

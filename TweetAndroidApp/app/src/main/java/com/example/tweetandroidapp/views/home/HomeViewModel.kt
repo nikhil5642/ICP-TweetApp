@@ -6,7 +6,8 @@ import androidx.lifecycle.ViewModel
 import com.example.tweetandroidapp.models.TweetModel
 import com.example.tweetandroidapp.repositories.TweetsRepository
 
-class HomeViewModel(private val tweetsRepository: TweetsRepository,) : ViewModel() {
+class HomeViewModel(private val tweetsRepository: TweetsRepository,
+    ) : ViewModel() {
 
     private val _tweets = MutableLiveData<List<TweetModel>>()
     val tweets: LiveData<List<TweetModel>>

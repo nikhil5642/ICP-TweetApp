@@ -28,7 +28,7 @@ class WriteTweetFragment : Fragment(), WriteTweetListener {
     ): View? {
         // Set up DataBinding
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_write_tweet, container, false)
-        tweetsRepository= DummyTweetsRepository(requireContext())
+        tweetsRepository= TweetsRepository(requireContext())
         userRepository=UserRepository(requireContext())
         viewModel = ViewModelProvider(this,WriteViewModelFactory(userRepository,tweetsRepository,
             this))[WriteTweetViewModel::class.java]

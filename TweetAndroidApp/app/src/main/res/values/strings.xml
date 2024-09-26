@@ -9,4 +9,6 @@
     <string name="enter_username">Enter Username</string>
     <string name="continue_text">Continue</string>
     <string name="don_t_have_an_account_sign_up_here">Don\'t have an account? Sign up here</string>
+    <string name="powered_by_dfinity">Powered By Dfinity!</string>
+    <string name="welcome_to_tweetapp">Welcome to TweetApp</string>
 </resources>

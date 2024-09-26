@@ -12,31 +12,29 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
         android:padding="16dp">
 
-        <!-- Tweet Content Input -->
         <EditText
             android:id="@+id/tweet_content_input"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
             android:hint="@string/write_your_tweet_here"
             android:inputType="textMultiLine"
             android:text="@={viewModel.tweetContent}"
-            android:minHeight="100dp" />
+            android:minHeight="100dp"
+            android:background="?attr/editTextBackground"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
-        <!-- Post Tweet Button -->
         <Button
             android:id="@+id/post_tweet_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/tweet_content_input"
-            app:layout_constraintRight_toRightOf="parent"
             android:text="@string/post_tweet"
             android:onClick="@{()->viewModel.postTweet()}"
+            app:layout_constraintTop_toBottomOf="@id/tweet_content_input"
+            app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginTop="16dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

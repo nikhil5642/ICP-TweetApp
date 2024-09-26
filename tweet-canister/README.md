@@ -1,59 +1,140 @@
-# `tweet-canister`
+## Tweet Canister
 
-Welcome to your new `tweet-canister` project and to the Internet Computer development community. By default, creating a new project adds this README and some template files to your project directory. You can edit these template files to customize your project and to include your own code to speed up the development cycle.
+This is the backend module for the **TweetApp** decentralized Twitter-like platform. The canister is built on the **Internet Computer (ICP)** using the **Motoko** programming language. It handles the core functionalities, including creating, storing, and retrieving tweets in a decentralized manner. Each tweet is tied to a custom user ID and the user's `Principal`, and all data is persistently stored in the canister.
 
-To get started, you might want to explore the project directory structure and the default configuration file. Working with this project in your development environment will not affect any production deployment or identity tokens.
+### Table of Contents
+- [Features](#features)
+- [Technology](#technology)
+- [Canister Functions](#canister-functions)
+- [Setup and Deployment](#setup-and-deployment)
+- [Usage](#usage)
+- [Persistence](#persistence)
 
-To learn more before you start working with `tweet-canister`, see the following documentation available online:
+---
 
-- [Quick Start](https://internetcomputer.org/docs/current/developer-docs/setup/deploy-locally)
-- [SDK Developer Tools](https://internetcomputer.org/docs/current/developer-docs/setup/install)
-- [Motoko Programming Language Guide](https://internetcomputer.org/docs/current/motoko/main/motoko)
-- [Motoko Language Quick Reference](https://internetcomputer.org/docs/current/motoko/main/language-manual)
+### Features
 
-If you want to start working on your project right away, you might want to try the following commands:
+- **Post Tweets**: Users can post tweets using a custom user ID and content.
+- **Retrieve Tweets**: Retrieve all tweets stored in the canister.
+- **Persistent Storage**: Tweets are stored in stable memory, ensuring they are retained even after canister upgrades.
 
-```bash
-cd tweet-canister/
-dfx help
-dfx canister --help
+---
+
+### Technology
+
+- **Motoko**: The backend logic for the canister is written in Motoko.
+- **Internet Computer (ICP)**: The canister is deployed on the decentralized Internet Computer network.
+- **DFX SDK**: Used for canister management, deployment, and interaction.
+
+---
+
+### Canister Functions
+
+#### `postTweet(userID: Text, content: Text) : async Nat`
+- **Purpose**: Allows users to post a tweet with their custom user ID and content.
+- **Parameters**:
+  - `userID`: A custom identifier for the user posting the tweet.
+  - `content`: The content of the tweet.
+- **Returns**: The unique ID of the tweet.
+- **Example Usage**:
+  ```motoko
+  let tweetID = await postTweet("user123", "This is my first tweet!");
+  ```
+
+#### `getTweets() : query async [Tweet]`
+- **Purpose**: Returns all tweets stored in the canister.
+- **Returns**: An array of `Tweet` objects.
+- **Example Usage**:
+  ```motoko
+  let allTweets = await getTweets();
+  ```
+
+#### `saveToStable() : async ()`
+- **Purpose**: Saves the current in-memory tweets to stable storage, ensuring persistence across upgrades.
+  
+#### `loadFromStable() : async ()`
+- **Purpose**: Loads the tweets from stable storage back into memory, typically used after a canister upgrade.
+
+---
+
+### Data Structure
+
+The **Tweet** data type is structured as follows:
+
+```motoko
+type Tweet = {
+    id: Nat;
+    creatorID: Text;       // The custom user ID provided by the user.
+    applicationID: Principal;  // The Principal of the user (for reference).
+    created: Int;          // The timestamp when the tweet was created.
+    content: Text;         // The actual content of the tweet.
+};
 ```
 
-## Running the project locally
+---
 
-If you want to test your project locally, you can use the following commands:
+### Setup and Deployment
 
-```bash
-# Starts the replica, running in the background
-dfx start --background
+To deploy the **Tweet Canister** on the **Internet Computer**, follow these steps:
 
-# Deploys your canisters to the replica and generates your candid interface
-dfx deploy
-```
+#### Prerequisites
 
-Once the job completes, your application will be available at `http://localhost:4943?canisterId={asset_canister_id}`.
+- **DFX SDK**: Ensure the DFX SDK is installed on your machine. Follow the official guide [here](https://smartcontracts.org/docs/quickstart/quickstart-intro.html).
+  
+#### Steps
 
-If you have made changes to your backend canister, you can generate a new candid interface with
+1. **Clone the Repository**:
+   ```bash
+   git clone https://github.com/your-repo/tweetapp-icp.git
+   cd tweetapp-icp/canister
+   ```
 
-```bash
-npm run generate
-```
+2. **Start the DFX environment**:
+   Start the Internet Computer locally.
+   ```bash
+   dfx start --background
+   ```
 
-at any time. This is recommended before starting the frontend development server, and will be run automatically any time you run `dfx deploy`.
+3. **Deploy the Canister**:
+   Deploy the canister to the local network:
+   ```bash
+   dfx deploy
+   ```
 
-If you are making frontend changes, you can start a development server with
+4. **Interact with the Canister**:
+   Once deployed, you can interact with the canister using either DFX commands or an external application (e.g., the Android app).
+   ```bash
+   dfx canister call tweet-canister postTweet '("user123", "Hello World!")'
+   ```
 
-```bash
-npm start
-```
+---
 
-Which will start a server at `http://localhost:8080`, proxying API requests to the replica at port 4943.
+### Usage
 
-### Note on frontend environment variables
+The `tweet-canister` allows external applications (such as the accompanying Android app) to interact with it by posting and retrieving tweets. The following actions can be performed via canister API calls:
 
-If you are hosting frontend code somewhere without using DFX, you may need to make one of the following adjustments to ensure your project does not fetch the root key in production:
+- **Post a Tweet**: Users can post tweets using their user ID and the content.
+- **Get Tweets**: Retrieve the list of all tweets stored in the canister.
 
-- set`DFX_NETWORK` to `ic` if you are using Webpack
-- use your own preferred method to replace `process.env.DFX_NETWORK` in the autogenerated declarations
-  - Setting `canisters -> {asset_canister_id} -> declarations -> env_override to a string` in `dfx.json` will replace `process.env.DFX_NETWORK` with the string in the autogenerated declarations
-- Write your own `createActor` constructor
+These actions can be invoked programmatically or via a front-end application (like the Android app).
+
+---
+
+### Persistence
+
+The canister stores tweets in memory but also persists them across upgrades using **stable variables**:
+
+- **Stable Variables**: The `stableTweets` variable is used to persist the tweets across canister upgrades.
+- Before upgrading the canister, make sure to invoke the `saveToStable()` function to save the tweets.
+  
+---
+
+
+### Notes
+
+- This canister is designed to be highly scalable, supporting any number of users posting tweets. The use of `Array.append` ensures that new tweets are appended to the in-memory array efficiently.
+- The user’s Principal (`applicationID`) is also stored for reference, but the primary identifier for each tweet is the custom `userID`.
+
+---
+
+This **README.md** provides a comprehensive overview of the **Tweet Canister** module, including how to use, deploy, and interact with it. Let me know if you need further clarification or additions!

@@ -1,26 +1,22 @@
 {
-  "canisters": {
-    "tweet-canister-backend": {
-      "main": "src/tweet-canister-backend/main.mo",
-      "type": "motoko"
-    },
-    "tweet-canister-frontend": {
-      "dependencies": [
-        "tweet-canister-backend"
-      ],
-      "source": [
-        "src/tweet-canister-frontend/dist"
-      ],
-      "type": "assets",
-      "workspace": "tweet-canister-frontend"
-    }
-  },
-  "defaults": {
-    "build": {
-      "args": "",
-      "packtool": ""
-    }
-  },
-  "output_env_file": ".env",
-  "version": 1
+	"canisters": {
+		"tweet-canister-backend": {
+			"main": "src/tweet-canister-backend/main.mo",
+			"type": "motoko"
+		},
+		"tweet-canister-frontend": {
+			"dependencies": ["tweet-canister-backend"],
+			"source": ["src/tweet-canister-frontend/dist"],
+			"type": "assets",
+			"workspace": "tweet-canister-frontend"
+		}
+	},
+	"defaults": {
+		"build": {
+			"args": "",
+			"packtool": ""
+		}
+	},
+	"output_env_file": ".env",
+	"version": 1
 }

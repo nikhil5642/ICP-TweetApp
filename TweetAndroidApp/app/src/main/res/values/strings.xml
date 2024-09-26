@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">TweetAndroidApp</string>
-    <string name="ic_endpoint">http://127.0.0.1:4943</string>
+    <string name="ic_endpoint">http://10.0.2.2:4943</string>
     <string name="canister_id">be2us-64aaa-aaaaa-qaabq-cai</string>
     <string name="by_creator">By: @%s</string>
     <string name="at_timestamp">At: %s</string>

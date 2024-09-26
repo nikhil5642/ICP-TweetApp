@@ -11,21 +11,26 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.tweetandroidapp.R
 import com.example.tweetandroidapp.databinding.FragmentWriteTweetBinding
+import com.example.tweetandroidapp.icp.ICClient
+import com.example.tweetandroidapp.repositories.TweetsRepository
+import com.example.tweetandroidapp.repositories.UserRepository
 
 class WriteTweetFragment : Fragment(), WriteTweetListener {
 
     private lateinit var binding: FragmentWriteTweetBinding
     private lateinit var viewModel: WriteTweetViewModel
-
+    private lateinit var tweetsRepository: TweetsRepository
+    private lateinit var userRepository: UserRepository
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Set up DataBinding
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_write_tweet, container, false)
-
-        // Initialize ViewModel
-        viewModel = ViewModelProvider(this,WriteViewModelFactory(this))[WriteTweetViewModel::class.java]
+        tweetsRepository= TweetsRepository(ICClient.getInstance(requireContext()))
+        userRepository=UserRepository(requireContext())
+        viewModel = ViewModelProvider(this,WriteViewModelFactory(userRepository,tweetsRepository,
+            this))[WriteTweetViewModel::class.java]
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
 

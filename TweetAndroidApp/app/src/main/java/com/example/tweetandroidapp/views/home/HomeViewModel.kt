@@ -4,27 +4,20 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.tweetandroidapp.models.TweetModel
-import com.example.tweetandroidapp.repositories.UserRepository
+import com.example.tweetandroidapp.repositories.TweetsRepository
 
-class HomeViewModel() : ViewModel() {
+class HomeViewModel(private val tweetsRepository: TweetsRepository,) : ViewModel() {
 
-    // LiveData to hold the list of tweets
     private val _tweets = MutableLiveData<List<TweetModel>>()
     val tweets: LiveData<List<TweetModel>>
         get() = _tweets
 
     init {
-        loadTweets() // Load tweets when ViewModel is created
+        loadTweets()
     }
 
-    // Simulate loading tweets from repository or a backend
     private fun loadTweets() {
-        // Replace this with actual repository call to load data
-        _tweets.value = listOf(
-            TweetModel(1, "This is my first tweet!", "User1", System.currentTimeMillis()),
-            TweetModel(2, "Hello, world!", "User2", System.currentTimeMillis())
-            // Add more mock tweets here
-        )
+        _tweets.value = tweetsRepository.getTweets().toList();
     }
 
 }

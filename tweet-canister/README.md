@@ -134,7 +134,3 @@ The canister stores tweets in memory but also persists them across upgrades usin
 
 - This canister is designed to be highly scalable, supporting any number of users posting tweets. The use of `Array.append` ensures that new tweets are appended to the in-memory array efficiently.
 - The user’s Principal (`applicationID`) is also stored for reference, but the primary identifier for each tweet is the custom `userID`.
-
----
-
-This **README.md** provides a comprehensive overview of the **Tweet Canister** module, including how to use, deploy, and interact with it. Let me know if you need further clarification or additions!

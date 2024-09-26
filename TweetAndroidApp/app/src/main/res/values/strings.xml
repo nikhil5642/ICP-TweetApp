@@ -4,4 +4,6 @@
     <string name="canister_id">be2us-64aaa-aaaaa-qaabq-cai</string>
     <string name="by_creator">By: @%s</string>
     <string name="at_timestamp">At: %s</string>
+    <string name="post_tweet">Post Tweet</string>
+    <string name="write_your_tweet_here">Write your tweet here</string>
 </resources>

@@ -20,14 +20,14 @@
         android:name="com.example.tweetandroidapp.views.home.HomeFragment"
         android:label="Home"
         tools:layout="@layout/fragment_home">
-<!--        <action-->
-<!--            android:id="@+id/action_homeFragment_to_writeTweetFragment"-->
-<!--            app:destination="@id/writeTweetFragment" />-->
+        <action
+            android:id="@+id/action_homeFragment_to_writeTweetFragment"
+            app:destination="@id/writeTweetFragment" />
     </fragment>
 
-<!--    <fragment-->
-<!--        android:id="@+id/writeTweetFragment"-->
-<!--        android:name="com.example.tweetandroidapp.WriteTweetFragment"-->
-<!--        android:label="Write Tweet"-->
-<!--        tools:layout="@layout/fragment_write_tweet" />-->
+    <fragment
+        android:id="@+id/writeTweetFragment"
+        android:name="com.example.tweetandroidapp.views.writeTweet.WriteTweetFragment"
+        android:label="Write Tweet"
+        tools:layout="@layout/fragment_write_tweet" />
 </navigation>

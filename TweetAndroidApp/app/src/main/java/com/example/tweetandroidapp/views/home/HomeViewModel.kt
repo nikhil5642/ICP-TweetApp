@@ -4,8 +4,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.tweetandroidapp.models.TweetModel
+import com.example.tweetandroidapp.repositories.UserRepository
 
-class HomeViewModel : ViewModel() {
+class HomeViewModel() : ViewModel() {
 
     // LiveData to hold the list of tweets
     private val _tweets = MutableLiveData<List<TweetModel>>()
@@ -25,4 +26,5 @@ class HomeViewModel : ViewModel() {
             // Add more mock tweets here
         )
     }
+
 }

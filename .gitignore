@@ -23,3 +23,20 @@ tweet-canister/.svelte-kit/
 
 # environment variables
 tweet-canister/.env
+
+#Android Stuff
+TweetAndroidApp/*.iml
+TweetAndroidApp/.gradle
+TweetAndroidApp/local.properties
+TweetAndroidApp/.idea/caches
+TweetAndroidApp/.idea/libraries
+TweetAndroidApp/.idea/modules.xml
+TweetAndroidApp/.idea/workspace.xml
+TweetAndroidApp/.idea/navEditor.xml
+TweetAndroidApp/.idea/assetWizardSettings.xml
+TweetAndroidApp/.DS_Store
+TweetAndroidApp/build
+TweetAndroidApp/captures
+TweetAndroidApp/.externalNativeBuild
+TweetAndroidApp/.cxx
+TweetAndroidApp/local.properties

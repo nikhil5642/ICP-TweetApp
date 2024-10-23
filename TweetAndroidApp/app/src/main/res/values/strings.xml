@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">TweetAndroidApp</string>
-    <string name="ic_endpoint">http://10.0.2.2:4943</string>
-    <string name="canister_id">be2us-64aaa-aaaaa-qaabq-cai</string>
+    <string name="ic_endpoint">https://a4gq6-oaaaa-aaaab-qaa4q-cai.raw.icp0.io</string>
+    <string name="canister_id">r7ayq-5yaaa-aaaah-aq2ba-cai</string>
     <string name="by_creator">By: @%s</string>
     <string name="at_timestamp">At: %s</string>
     <string name="post_tweet">Post Tweet</string>

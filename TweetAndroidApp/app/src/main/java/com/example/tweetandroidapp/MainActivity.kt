@@ -12,6 +12,7 @@ import com.example.tweetandroidapp.repositories.UserRepository
 import com.example.tweetandroidapp.views.login.UserViewModel
 import com.example.tweetandroidapp.views.login.UserViewModelFactory
 import com.example.tweetandroidapp.views.login.UserActionListener
+import java.security.Security
 
 class MainActivity : AppCompatActivity(),UserActionListener {
     private lateinit var userRepository: UserRepository
@@ -20,7 +21,6 @@ class MainActivity : AppCompatActivity(),UserActionListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
 

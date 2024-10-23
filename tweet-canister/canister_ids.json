@@ -1,0 +1,8 @@
+{
+  "tweet-canister-backend": {
+    "ic": "r7ayq-5yaaa-aaaah-aq2ba-cai"
+  },
+  "tweet-canister-frontend": {
+    "ic": "ryb6e-qaaaa-aaaah-aq2bq-cai"
+  }
+}

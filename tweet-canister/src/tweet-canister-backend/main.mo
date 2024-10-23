@@ -16,17 +16,15 @@ actor TweetCanister {
 
     stable var stableTweets: [Tweet] = [];
 
-    // Function to post a tweet with custom user ID
     public shared(msg) func postTweet( userID: Text,content: Text) : async Nat {
         let newTweet: Tweet = {
             id = nextTweetId;
-            creatorID = userID;  // Store the user-provided ID
-            applicationID = msg.caller;  // Store the caller's principal for reference
+            creatorID = userID;  
+            applicationID = msg.caller;  
             content = content;
             created = Time.now();
         };
 
-        // Add the new tweet to the in-memory array
         tweets := Array.append(tweets, [newTweet]);
         nextTweetId += 1;
 

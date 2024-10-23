@@ -18,7 +18,7 @@ class HomeViewModel(private val tweetsRepository: TweetsRepository,
     }
 
     fun loadTweets() {
-        _tweets.value = tweetsRepository.getTweets().reversed()b.toList();
+        _tweets.value = tweetsRepository.getTweets().reversed().toList();
     }
 
 }

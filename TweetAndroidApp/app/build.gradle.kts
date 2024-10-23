@@ -52,7 +52,6 @@ dependencies {
     implementation(libs.ic4j.candid)
     implementation(libs.okhttp)
     implementation(libs.slf4j.android)
-    implementation(libs.bcprov.jdk18on)
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
     implementation(libs.androidx.databinding.runtime)

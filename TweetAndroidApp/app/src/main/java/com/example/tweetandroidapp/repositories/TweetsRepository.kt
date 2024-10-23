@@ -4,6 +4,7 @@ import android.content.Context
 import com.example.tweetandroidapp.icp.ICClient
 import com.example.tweetandroidapp.icp.TweetCanisterService
 import com.example.tweetandroidapp.models.TweetModel
+import java.util.concurrent.CompletableFuture
 
 
 open class TweetsRepository(private val context: Context) {
@@ -13,7 +14,7 @@ open class TweetsRepository(private val context: Context) {
         return tweetService.getTweets()
     }
 
-    open fun postTweet(userId: String?, content: String?): Long {
+    open fun postTweet(userId: String?, content: String?): CompletableFuture<Long> {
         val createdAt = System.currentTimeMillis()
         val tweetModel = TweetModel(null, content, userId, createdAt)
         return tweetService.postTweet(tweetModel)

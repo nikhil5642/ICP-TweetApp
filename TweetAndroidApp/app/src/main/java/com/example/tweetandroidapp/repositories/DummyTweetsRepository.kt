@@ -3,6 +3,7 @@ import android.content.SharedPreferences
 import com.example.tweetandroidapp.icp.ICClient
 import com.example.tweetandroidapp.models.TweetModel
 import com.example.tweetandroidapp.repositories.TweetsRepository
+import java.util.concurrent.CompletableFuture
 
 /**
  * DummyTweetsRepository - This class is designed to test the TweetsRepository UI only without deploying actual canister.
@@ -43,7 +44,7 @@ class DummyTweetsRepository(context: Context) : TweetsRepository(context){
 
 
     // Post a new tweet and store it in SharedPreferences
-    override fun postTweet(userId: String?, content: String?): Long {
+    override fun postTweet(userId: String?, content: String?): CompletableFuture<Long> {
         val createdAt = System.currentTimeMillis()
         val tweetCount = sharedPreferences.getInt(TWEET_COUNT_KEY, 0)
 
@@ -55,7 +56,7 @@ class DummyTweetsRepository(context: Context) : TweetsRepository(context){
             putInt(TWEET_COUNT_KEY, tweetCount + 1)
         }.apply()
 
-        return createdAt
+        return CompletableFuture.completedFuture(createdAt)
     }
 
 }
